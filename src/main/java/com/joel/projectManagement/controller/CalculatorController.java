@@ -15,16 +15,16 @@ public class CalculatorController {
 
     @GetMapping("/add")
     public  ResponseEntity<BigDecimal> add (@RequestParam("num1")  BigDecimal num1, @RequestParam("num2")  BigDecimal num2) {
-        return new ResponseEntity(num1.add(num2), HttpStatus.OK);
+        return new ResponseEntity<>(num1.add(num2), HttpStatus.OK);
     }
 
     @GetMapping("/sub")
     public ResponseEntity<BigDecimal> sub (@RequestParam("num1") BigDecimal num1, @RequestParam("num2") BigDecimal num2) {
-        return new ResponseEntity(num1.subtract(num2), HttpStatus.OK);
+        return new ResponseEntity<>(num1.subtract(num2), HttpStatus.OK);
     }
 
     @GetMapping("/mul")
-    public ResponseEntity<BigDecimal> mul (@RequestParam("num1") BigDecimal num1, @RequestParam("num2") BigDecimal num2) {
+    public ResponseEntity mul (@RequestParam("num1") BigDecimal num1, @RequestParam("num2") BigDecimal num2) {
         return new ResponseEntity(num1.multiply(num2), HttpStatus.OK);
     }
 
@@ -36,7 +36,7 @@ public class CalculatorController {
     @GetMapping("/fact/{num}")
     public ResponseEntity<BigInteger> fact (@PathVariable("num") long num) throws Exception {
         ResponseEntity<BigInteger> responseEntity;
-        if (String.valueOf(num).length() > 4) {
+        if (String.valueOf(num).split(".")[0].length() > 4) {
             throw new Exception("Sorry, Number too large!");
         }
         BigInteger result = BigInteger.ONE;
@@ -45,7 +45,7 @@ public class CalculatorController {
             result = result.multiply(BigInteger.valueOf(i));
         }
 
-        responseEntity = new ResponseEntity<BigInteger>(result, HttpStatus.OK);
+        responseEntity = new ResponseEntity(result, HttpStatus.OK);
         return responseEntity;
     }
 
@@ -55,14 +55,10 @@ public class CalculatorController {
         List<BigDecimal> numbers = calculatorDTO.getNumbers();
 
         for (int i = 0; i < numbers.size(); i++) {
-            if (i == 0) {
-                result = numbers.get(i);
-            }else {
-                result = result.multiply(numbers.get(i));
-            }
+            result = i == 0 ? numbers.get(i) : result.multiply(numbers.get(i));
         }
 
-        ResponseEntity<BigDecimal> responseEntity = new ResponseEntity<BigDecimal>(result, HttpStatus.CREATED);
+        ResponseEntity<BigDecimal> responseEntity = new ResponseEntity(result, HttpStatus.CREATED);
 
         return responseEntity;
     }

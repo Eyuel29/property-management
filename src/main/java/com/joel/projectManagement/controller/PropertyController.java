@@ -1,13 +1,16 @@
 package com.joel.projectManagement.controller;
 
+import com.joel.projectManagement.dto.PropertyDTO;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/")
 public class PropertyController {
-
-    @GetMapping("/greet")
-    public String sayHello (@RequestParam(value = "name", required = false) String name) {
-        return name != null && name.length() > 0  ? "Hello, " + name : "Hello";
+    @PostMapping("/property")
+    public ResponseEntity<PropertyDTO> createProperty (@RequestBody PropertyDTO newProperty) {
+        System.out.println(newProperty);
+        return new ResponseEntity(newProperty, HttpStatus.CREATED);
     }
 }
