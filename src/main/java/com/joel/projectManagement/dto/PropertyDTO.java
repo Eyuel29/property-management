@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class PropertyDTO {
+    private String id;
     private String title;
     private String description;
     private BigDecimal price;
