@@ -1,7 +1,8 @@
 package com.joel.projectManagement.service;
 
 import com.joel.projectManagement.dto.PropertyDTO;
+import com.joel.projectManagement.entity.Property;
 
 public interface PropertyService {
-    public PropertyDTO createProperty(PropertyDTO propertyDTO);
+    Property createProperty(PropertyDTO propertyDTO);
 }

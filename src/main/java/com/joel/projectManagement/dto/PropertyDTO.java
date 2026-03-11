@@ -3,13 +3,13 @@ package com.joel.projectManagement.dto;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 public class PropertyDTO {
     private String title;
     private String description;
-    private String ownerName;
-    private String ownerEmail;
-    private double price;
+    private BigDecimal price;
     private String address;
 }

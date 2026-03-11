@@ -16,7 +16,6 @@ public class PropertyController {
 
     @PostMapping("/property")
     public ResponseEntity<PropertyDTO> createProperty (@RequestBody PropertyDTO newProperty) {
-        System.out.println(newProperty);
         propertyService.createProperty(newProperty);
         return new ResponseEntity(newProperty, HttpStatus.CREATED);
     }
