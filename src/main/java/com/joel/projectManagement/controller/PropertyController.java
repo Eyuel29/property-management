@@ -3,6 +3,7 @@ package com.joel.projectManagement.controller;
 import com.joel.projectManagement.dto.PropertyDTO;
 import com.joel.projectManagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,12 +14,15 @@ import java.util.List;
 @RequestMapping("/api/v1/")
 public class PropertyController {
 
+    @Value("${spring.datasource.url}:") public String dbUrl;
+
     @Autowired
     private PropertyService propertyService;
 
     @GetMapping("/property")
     public ResponseEntity<List<PropertyDTO>> getAllProperties () {
         List<PropertyDTO> properties = propertyService.getAllProperties();
+        System.out.println(dbUrl);
         return new ResponseEntity(properties, HttpStatus.OK);
     }
 
