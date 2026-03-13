@@ -1,8 +1,8 @@
 package com.joel.projectManagement.service.impl;
 
-import com.joel.projectManagement.converter.PropertyConverter;
 import com.joel.projectManagement.dto.PropertyDTO;
 import com.joel.projectManagement.entity.Property;
+import com.joel.projectManagement.mapper.PropertyMapper;
 import com.joel.projectManagement.repository.PropertyRepository;
 import com.joel.projectManagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,24 +18,24 @@ public class PropertyServiceImpl implements PropertyService {
     private PropertyRepository propertyRepository;
 
     @Autowired
-    private PropertyConverter propertyConverter;
+    private PropertyMapper propertyMapper;
 
     @Override
     public PropertyDTO createProperty(PropertyDTO propertyDTO) {
-        Property newProperty = propertyConverter.convertDTOToEntity(propertyDTO);
+        Property newProperty = propertyMapper.toEntity(propertyDTO);
         Property result = propertyRepository.save(newProperty);
-        return propertyConverter.convertEntityToDTO(result);
+        return propertyMapper.toDTO(result);
     }
 
     @Override
     public List<PropertyDTO> getAllProperties() {
-        return StreamSupport.stream(propertyRepository.findAll().spliterator(), false).map((Property property) -> propertyConverter.convertEntityToDTO(property)).toList();
+        return StreamSupport.stream(propertyRepository.findAll().spliterator(), false).map((Property property) -> propertyMapper.toDTO(property)).toList();
     }
 
     @Override
     public PropertyDTO getPropertyById(String propertyId) {
         Optional<Property> result = propertyRepository.findById(propertyId);
-        return result.map(property -> propertyConverter.convertEntityToDTO(property)).orElse(null);
+        return result.map(property -> propertyMapper.toDTO(property)).orElse(null);
     }
 
     @Override
@@ -49,10 +49,9 @@ public class PropertyServiceImpl implements PropertyService {
         result.setDescription(propertyDTO.getDescription());
         result.setPrice(propertyDTO.getPrice());
         result.setAddress(propertyDTO.getAddress());
-
         result = propertyRepository.save(result);
 
-        return propertyConverter.convertEntityToDTO(result);
+        return propertyMapper.toDTO(result);
     }
 
     @Override

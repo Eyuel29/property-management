@@ -1,11 +1,13 @@
 package com.joel.projectManagement.service.impl;
-import com.joel.projectManagement.converter.UserConverter;
 import com.joel.projectManagement.dto.UserDTO;
 import com.joel.projectManagement.entity.User;
+import com.joel.projectManagement.mapper.UserMapper;
 import com.joel.projectManagement.repository.UserRepository;
 import com.joel.projectManagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -13,18 +15,18 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private UserConverter userConverter;
+    private UserMapper userMapper;
 
     @Override
     public UserDTO signIn(String email, String password) {
-//        User result = userRepository.();
-        return userConverter.convertEntityToDTO(result);
+        Optional<User> result = userRepository.findByEmail(email);
+        return result.isPresent() ? userMapper.toDTO(result.get()) : null;
     }
 
     @Override
     public UserDTO signUp(UserDTO userDTO) {
-        User newUser = userConverter.convertDTOToEntity(userDTO);
+        User newUser = userMapper.toEntity(userDTO);
         User result = userRepository.save(newUser);
-        return userConverter.convertEntityToDTO(result);
+        return userMapper.toDTO(result);
     }
 }

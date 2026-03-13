@@ -1,7 +1,6 @@
 package com.joel.projectManagement.service;
 
 import com.joel.projectManagement.dto.PropertyDTO;
-
 import java.util.List;
 
 public interface PropertyService {
