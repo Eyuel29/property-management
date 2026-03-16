@@ -22,7 +22,6 @@ public class PropertyController {
     @GetMapping("/property")
     public ResponseEntity<List<PropertyDTO>> getAllProperties () {
         List<PropertyDTO> properties = propertyService.getAllProperties();
-        System.out.println(dbUrl);
         return new ResponseEntity(properties, HttpStatus.OK);
     }
 

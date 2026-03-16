@@ -1,7 +1,9 @@
 package com.joel.projectManagement.controller;
 
 import com.joel.projectManagement.dto.UserDTO;
+import com.joel.projectManagement.exception.PMSException;
 import com.joel.projectManagement.service.UserService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,18 +20,17 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/user/signup")
-    public ResponseEntity<UserDTO> signUp (@RequestBody UserDTO newUser) {
+    public ResponseEntity<UserDTO> signUp (@Valid @RequestBody UserDTO newUser) throws PMSException {
         UserDTO result = userService.signUp(newUser);
         return new ResponseEntity<>(result, HttpStatus.OK);
     }
 
     @PostMapping("/user/signin")
-    public ResponseEntity<UserDTO> signIn (@RequestBody UserDTO userDTO) {
+    public ResponseEntity<UserDTO> signIn (@Valid @RequestBody UserDTO userDTO) throws PMSException {
 
         UserDTO foundUser = userService.signIn(userDTO.getEmail(), userDTO.getPassword());
-
         if (foundUser == null) return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
-        if (foundUser.getPassword() != userDTO.getPassword()) return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+        if (!foundUser.getPassword().equals(userDTO.getPassword())) return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 
         return new ResponseEntity<>(foundUser, HttpStatus.OK);
     }

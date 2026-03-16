@@ -17,5 +17,5 @@ public class Property {
     @Column(name = "title", nullable = false) private String title;
     @Column(name = "description", nullable = false) private String description;
     @Column(name = "price", nullable = false) private BigDecimal price;
-    private String address;
+    @Column(name = "address") private String address;
 }
