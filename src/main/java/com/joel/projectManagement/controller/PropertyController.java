@@ -1,6 +1,7 @@
 package com.joel.projectManagement.controller;
 
 import com.joel.projectManagement.dto.PropertyDTO;
+import com.joel.projectManagement.exception.PMSException;
 import com.joel.projectManagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -14,8 +15,6 @@ import java.util.List;
 @RequestMapping("/api/v1/")
 public class PropertyController {
 
-    @Value("${spring.datasource.url}:") public String dbUrl;
-
     @Autowired
     private PropertyService propertyService;
 
@@ -26,8 +25,8 @@ public class PropertyController {
     }
 
     @PostMapping("/property")
-    public ResponseEntity<PropertyDTO> createProperty (@RequestBody PropertyDTO newProperty) {
-        propertyService.createProperty(newProperty);
+    public ResponseEntity<PropertyDTO> createProperty (@RequestBody PropertyDTO newProperty) throws PMSException {
+        propertyService.saveProperty(newProperty);
         return new ResponseEntity(newProperty, HttpStatus.CREATED);
     }
 
@@ -36,6 +35,13 @@ public class PropertyController {
         PropertyDTO result = propertyService.getPropertyById(propertyId);
         if (result == null) return new ResponseEntity(null, HttpStatus.NOT_FOUND);
         return new ResponseEntity(result, HttpStatus.OK);
+    }
+
+    @GetMapping("/property-by-user/{userId}")
+    public ResponseEntity<PropertyDTO> getAllUserProperties (@PathVariable String userId) {
+        System.out.println(userId);
+        List<PropertyDTO> properties = propertyService.getAllUserProperties(userId);
+        return new ResponseEntity(properties, HttpStatus.OK);
     }
 
     @PutMapping("/property/{propertyId}")

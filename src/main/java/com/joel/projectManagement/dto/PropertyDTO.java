@@ -15,4 +15,5 @@ public class PropertyDTO {
     @NotNull @Size(min = 20, max = 1000, message = "Property description has to be between 20 and 1000 characters!") private String description;
     @NotNull private BigDecimal price;
     @NotNull @Size(min = 5, max = 100, message = "Property address has to be between 5 and 100 characters!") private String address;
+    private String userId;
 }

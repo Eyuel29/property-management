@@ -2,8 +2,12 @@ package com.joel.projectManagement.service.impl;
 
 import com.joel.projectManagement.dto.PropertyDTO;
 import com.joel.projectManagement.entity.Property;
+import com.joel.projectManagement.entity.User;
+import com.joel.projectManagement.exception.PMSError;
+import com.joel.projectManagement.exception.PMSException;
 import com.joel.projectManagement.mapper.PropertyMapper;
 import com.joel.projectManagement.repository.PropertyRepository;
+import com.joel.projectManagement.repository.UserRepository;
 import com.joel.projectManagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,9 +24,22 @@ public class PropertyServiceImpl implements PropertyService {
     @Autowired
     private PropertyMapper propertyMapper;
 
+    @Autowired
+    private UserRepository userRepository;
+
     @Override
-    public PropertyDTO createProperty(PropertyDTO propertyDTO) {
+    public PropertyDTO saveProperty(PropertyDTO propertyDTO) throws PMSException {
+
         Property newProperty = propertyMapper.toEntity(propertyDTO);
+        Optional<User> ownerOpt = userRepository.findById(propertyDTO.getUserId());
+
+        if (ownerOpt.isPresent()){
+            newProperty.setUser(ownerOpt.get());
+        }else{
+            List<PMSError> allErrors = List.of(new PMSError("USER_ID_NOT_FOUND", "There is no user with the specified id!"));
+            throw new PMSException(allErrors);
+        }
+
         Property result = propertyRepository.save(newProperty);
         return propertyMapper.toDTO(result);
     }
@@ -30,6 +47,15 @@ public class PropertyServiceImpl implements PropertyService {
     @Override
     public List<PropertyDTO> getAllProperties() {
         return StreamSupport.stream(propertyRepository.findAll().spliterator(), false).map((Property property) -> propertyMapper.toDTO(property)).toList();
+    }
+
+    @Override
+    public List<PropertyDTO> getAllUserProperties(String userId) {
+        List<Property> allUserProperties = propertyRepository.findAllByUserId(userId);
+        return StreamSupport
+            .stream(allUserProperties.spliterator(), false)
+            .map(property -> propertyMapper.toDTO(property))
+            .toList();
     }
 
     @Override

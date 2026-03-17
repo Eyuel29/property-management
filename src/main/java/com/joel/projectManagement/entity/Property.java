@@ -18,4 +18,5 @@ public class Property {
     @Column(name = "description", nullable = false) private String description;
     @Column(name = "price", nullable = false) private BigDecimal price;
     @Column(name = "address") private String address;
+    @ManyToOne(fetch = FetchType.LAZY) @JoinColumn(name = "user_id", nullable = false) private User user;
 }
