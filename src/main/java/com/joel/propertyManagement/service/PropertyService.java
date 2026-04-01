@@ -1,7 +1,7 @@
-package com.joel.projectManagement.service;
+package com.joel.propertyManagement.service;
 
-import com.joel.projectManagement.dto.PropertyDTO;
-import com.joel.projectManagement.exception.PMSException;
+import com.joel.propertyManagement.dto.PropertyDTO;
+import com.joel.propertyManagement.exception.PMSException;
 
 import java.util.List;
 

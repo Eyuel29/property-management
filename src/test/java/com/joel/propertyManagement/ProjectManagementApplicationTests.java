@@ -1,4 +1,4 @@
-package com.joel.projectManagement;
+package com.joel.propertyManagement;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

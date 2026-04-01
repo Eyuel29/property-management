@@ -1,7 +1,7 @@
-package com.joel.projectManagement.mapper;
+package com.joel.propertyManagement.mapper;
 
-import com.joel.projectManagement.dto.UserDTO;
-import com.joel.projectManagement.entity.User;
+import com.joel.propertyManagement.dto.UserDTO;
+import com.joel.propertyManagement.entity.User;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")

@@ -1,7 +1,7 @@
-package com.joel.projectManagement.service;
+package com.joel.propertyManagement.service;
 
-import com.joel.projectManagement.dto.UserDTO;
-import com.joel.projectManagement.exception.PMSException;
+import com.joel.propertyManagement.dto.UserDTO;
+import com.joel.propertyManagement.exception.PMSException;
 
 public interface UserService {
     UserDTO signIn (String email, String password) throws PMSException;

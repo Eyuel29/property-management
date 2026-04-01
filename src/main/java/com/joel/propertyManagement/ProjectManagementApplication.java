@@ -1,4 +1,4 @@
-package com.joel.projectManagement;
+package com.joel.propertyManagement;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

@@ -1,4 +1,4 @@
-package com.joel.projectManagement.dto;
+package com.joel.propertyManagement.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -16,8 +16,8 @@ import java.time.Instant;
 public class UserDTO {
         private String id;
 
-//        @NotNull(message = "Name is required")
-//        @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
+        @NotNull(message = "Name is required")
+        @Size(min = 2, max = 100, message = "Name must be between 2 and 100 characters")
         private String name;
 
         @NotNull(message = "Email is required")
@@ -25,11 +25,11 @@ public class UserDTO {
         @Size(max = 150, message = "Email cannot exceed 150 characters")
         private String email;
 
-//        @NotNull(message = "Phone number is required")
-//        @Pattern(
-//                regexp = "^\\+?[0-9]{10,15}$",
-//                message = "Phone number must contain 10–15 digits and may start with +"
-//        )
+        @NotNull(message = "Phone number is required")
+        @Pattern(
+                regexp = "^\\+?[0-9\\s\\-()]{10,20}$",
+                message = "Invalid phone number format"
+        )
         private String phoneNumber;
 
         @NotNull(message = "Password is required")

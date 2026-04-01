@@ -1,4 +1,4 @@
-package com.joel.projectManagement.exception;
+package com.joel.propertyManagement.exception;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

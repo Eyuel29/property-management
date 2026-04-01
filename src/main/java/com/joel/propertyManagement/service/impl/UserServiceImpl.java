@@ -1,12 +1,12 @@
-package com.joel.projectManagement.service.impl;
+package com.joel.propertyManagement.service.impl;
 
-import com.joel.projectManagement.dto.UserDTO;
-import com.joel.projectManagement.entity.User;
-import com.joel.projectManagement.exception.PMSError;
-import com.joel.projectManagement.exception.PMSException;
-import com.joel.projectManagement.mapper.UserMapper;
-import com.joel.projectManagement.repository.UserRepository;
-import com.joel.projectManagement.service.UserService;
+import com.joel.propertyManagement.dto.UserDTO;
+import com.joel.propertyManagement.entity.User;
+import com.joel.propertyManagement.exception.PMSError;
+import com.joel.propertyManagement.exception.PMSException;
+import com.joel.propertyManagement.mapper.UserMapper;
+import com.joel.propertyManagement.repository.UserRepository;
+import com.joel.propertyManagement.service.UserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

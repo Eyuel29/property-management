@@ -1,10 +1,9 @@
-package com.joel.projectManagement.controller;
+package com.joel.propertyManagement.controller;
 
-import com.joel.projectManagement.dto.PropertyDTO;
-import com.joel.projectManagement.exception.PMSException;
-import com.joel.projectManagement.service.PropertyService;
+import com.joel.propertyManagement.dto.PropertyDTO;
+import com.joel.propertyManagement.exception.PMSException;
+import com.joel.propertyManagement.service.PropertyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

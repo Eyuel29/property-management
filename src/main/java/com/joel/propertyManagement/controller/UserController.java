@@ -1,8 +1,8 @@
-package com.joel.projectManagement.controller;
+package com.joel.propertyManagement.controller;
 
-import com.joel.projectManagement.dto.UserDTO;
-import com.joel.projectManagement.exception.PMSException;
-import com.joel.projectManagement.service.UserService;
+import com.joel.propertyManagement.dto.UserDTO;
+import com.joel.propertyManagement.exception.PMSException;
+import com.joel.propertyManagement.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

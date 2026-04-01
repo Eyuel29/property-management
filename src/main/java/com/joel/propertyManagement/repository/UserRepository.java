@@ -1,6 +1,6 @@
-package com.joel.projectManagement.repository;
+package com.joel.propertyManagement.repository;
 
-import com.joel.projectManagement.entity.User;
+import com.joel.propertyManagement.entity.User;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 

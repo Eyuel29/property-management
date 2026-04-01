@@ -1,7 +1,7 @@
-package com.joel.projectManagement.mapper;
+package com.joel.propertyManagement.mapper;
 
-import com.joel.projectManagement.dto.PropertyDTO;
-import com.joel.projectManagement.entity.Property;
+import com.joel.propertyManagement.dto.PropertyDTO;
+import com.joel.propertyManagement.entity.Property;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
